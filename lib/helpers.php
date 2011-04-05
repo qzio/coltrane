@@ -26,6 +26,7 @@ function h($str) {
  * @return void
  */
 function template($file,$params = array()) {
+	$use_layout = (substr($file,0,1) !== '_' && ! isset($params['_no_layout']) ) ? true : false;
 	$template_paths = BOOTSTRAP_DIR.'/templates';
 	$template = basename($file);
 	$render_me = $template_paths.'/'.$template;
@@ -36,6 +37,7 @@ function template($file,$params = array()) {
 		} else {
 			require $template_paths.'/error.php';
 		}
-	$content = ob_get_clean();
-	return $content;
+	$p['_content'] = ob_get_clean();
+	$p['_no_layout'] = true;
+	return ($use_layout) ? template('layout.php',$p) : $p['_content'];
 }

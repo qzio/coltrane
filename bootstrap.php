@@ -1,5 +1,6 @@
 <?php
 define('BOOTSTRAP_DIR', dirname(__FILE__));
+session_start();
 require BOOTSTRAP_DIR.'/config.php';
 
 function require_libs($path = '')
@@ -14,6 +15,3 @@ function require_libs($path = '')
 }
 
 require_libs(BOOTSTRAP_DIR.'/lib'); // require all the libraries recursevly
-
-db::setConnectionInfo(cfg::db_name, cfg::db_user, cfg::db_password);
-$p = array(); // use this var, it will be automatically extracted upon default render 

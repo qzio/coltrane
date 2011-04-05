@@ -18,30 +18,31 @@ everything in lib/ is required automatically, just drop what ever libs/ or modul
 		lib/										# everything here is auto required by bootstrap.php
 			| - helpers.php				# default helpers
 			| - restish.php				# defines the is_get is_post is_put is_delete functions..
-			| - db.php						# static methods that wrapps pdo
 			| - other library, helper and model files
 
 
+# TODO
 "With rewrite" is the preffered way to go if possible, nicer urls is also a nice addition ;)
 	- see rewrite rule for different http deamons at the bottom of this readme
 
 
 # some examples with comments
 
-## controllers/hello.php (controller)
+## public/hello.php (controller)
 
 		<?php
 		require '../bootstrap.php';
 
-		function on_before() {
+		function on_before( $params = array() ) {
 			// before filter
+			return $params;
 		}
 
 		function on_get( $params = array() ) {
 			$p['title'] = 'Hello World';
 
-			if ( $_GET['name'] ) {
-				$_GET['name'] = 'Unknown';
+			if ( $params['name'] ) {
+				$p['name'] = $params['name'];
 			} else {
 				$p['name'] = 'Unknown';
 			}
@@ -63,8 +64,10 @@ everything in lib/ is required automatically, just drop what ever libs/ or modul
 
 		}
 
+		run(basename(__FILE__,'.php')); // this is the dispatcher
 
-## templates/hello.html.php (template)
+
+## templates/hello.php (template)
 
 		<h1><?=h( $p['title'] )?></h1>
 		<p>
@@ -77,23 +80,20 @@ everything in lib/ is required automatically, just drop what ever libs/ or modul
 			 *	and add a <input type="hidden" name="_method" value="put"/> in order return correct method.
 			 */
 			?>
-		<?= form_start(array('method'=> 'put')) ?>
+		<?= form_start(array('method'=> 'get')) ?>
 			<fieldset>
 				<input type="text" name="name"/>
 				<input type="submit"/>
 			</fieldset>
 		</form>
 
-## templates/header.php (auto included by public/render.php)
+## templates/layout.php (autoincluded if the first argument to template() doesn't start with '
 
 		<!DOCTYPE html !>
 		<html>
 			<head>
 				<title><?=h( $p['title'] )?></title>
 			<body>
-
-## templates/footer.php (auto included by public/render.php)
-
+				<?= $p['_content'];?>
 			</body>
 		</html>
-
