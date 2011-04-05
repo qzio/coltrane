@@ -3,8 +3,7 @@
 coltrane comes out of need for some kind of simple mvc structure for small rest-like php apps.
 Without much overhead or fancy features.
 
-As default, a simple pdo wrapper is included
-everything in lib/ is required automatically, just drop what ever libs/ or modules you have there, or remove whatever you don't like.
+everything in lib/ is required automatically, just drop whatever libs or modules you have there.
 
 ## directory structure 
 
