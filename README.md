@@ -86,7 +86,7 @@ everything in lib/ is required automatically, just drop whatever libs or modules
 			</fieldset>
 		</form>
 
-## templates/layout.php (autoincluded if the first argument to template() doesn't start with '
+## templates/layout.php (autoincluded if the first argument to template() doesn't start with _
 
 		<!DOCTYPE html !>
 		<html>
