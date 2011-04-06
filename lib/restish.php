@@ -39,9 +39,9 @@ function run( $controller )
 	}
 
 	$params = $_REQUEST;
-
 	if (function_exists('on_before')) {
-		$params = on_before($params);
+		$on_before_params = on_before($params);
+		$params = (is_array($on_before_params)) ? $on_before_params : $params;
 	}
 
 	$output = '';
