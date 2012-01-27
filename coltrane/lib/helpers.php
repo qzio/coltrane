@@ -13,3 +13,19 @@ function form_start($params = array()) {
 	return $r;
 }
 
+/**
+ * @return $flash
+ */
+function flasher()
+{
+  $str = '';
+  if (!empty($_SESSION['flash'])) {
+    $type = (!empty($_SESSION['flash']['notice'])) ? 'notice' : 'alert';
+    if (!empty($_SESSION['flash'][$type])) {
+      $str = '<div class='.$type.'>'.h($_SESSION['flash'][$type]).'</div>';
+    }
+    unset($_SESSION['flash']);
+  }
+  return $str;
+}
+

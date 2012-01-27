@@ -163,3 +163,8 @@ function template_path($file)
 	}
 	return false;
 }
+
+function flash($str, $type = 'alert')
+{
+  $_SESSION['flash'][$type] = $str;
+}
