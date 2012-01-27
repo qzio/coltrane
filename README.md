@@ -46,7 +46,7 @@ everything in lib/ is required automatically, just drop whatever libs or modules
 				$p['name'] = 'Unknown';
 			}
 
-			return render( basename(__FILE__), $p );
+			return template( basename(__FILE__), $p );
 		}
 
 		function on_post( $params = array() ) {
