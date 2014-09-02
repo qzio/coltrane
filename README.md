@@ -38,15 +38,15 @@ everything in lib/ is required automatically, just drop whatever libs or modules
 		}
 
 		function on_get( $params = array() ) {
-			$p['title'] = 'Hello World';
+			$params['title'] = 'Hello World';
 
 			if ( $params['name'] ) {
-				$p['name'] = $params['name'];
+				$params['name'] = $params['name'];
 			} else {
-				$p['name'] = 'Unknown';
+				$params['name'] = 'Unknown';
 			}
 
-			return template( basename(__FILE__), $p );
+			return template( basename(__FILE__), $params );
 		}
 
 		function on_post( $params = array() ) {
